@@ -48,7 +48,8 @@ class SocialitePlusServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    private function copyDirectories() {
+    private function copyDirectories()
+    {
         $fs = new Filesystem;
         
         $fs->ensureDirectoryExists(app_path('Http/Controllers/Auth'));
