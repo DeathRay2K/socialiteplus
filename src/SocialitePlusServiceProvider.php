@@ -43,12 +43,12 @@ class SocialitePlusServiceProvider extends ServiceProvider
         });
     }
 
-	 /**
-	  * Copy controller and middleware directories into app
-	  *
-	  * @return void
-	  */
-	 private function copyDirectories() {
+    /**
+     * Copy controller and middleware directories into app
+     *
+     * @return void
+     */
+    private function copyDirectories() {
         $fs = new Filesystem;
         
         $fs->ensureDirectoryExists(app_path('Http/Controllers/Auth'));
@@ -58,9 +58,9 @@ class SocialitePlusServiceProvider extends ServiceProvider
         }
         
         $fs->ensureDirectoryExists(app_path('Http/Middleware'));
-        $middlewareFiles = $fs->files(app_path('Http/Middleware'));
-        if (empty($middlewareFiles)) {
+        $targetMiddleware = app_path('Http/Middleware/HandleSocialitePlusProviders.php');
+        if (! $fs->exists($targetMiddleware)) {
             $fs->copyDirectory(__DIR__.'/../stubs/app/Http/Middleware', app_path('Http/Middleware'));
         }
-	 }
+    }
 }
